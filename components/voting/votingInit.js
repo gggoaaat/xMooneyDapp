@@ -1,6 +1,7 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import WalletBridge from '../walletBridge';
 import Button from '@mui/material/Button';
+import { style } from "@mui/system";
 
 
 export default function VoterInit() {
@@ -47,9 +48,21 @@ export default function VoterInit() {
     walletBridge1.get
 
     const SliderStyle = {
-        //width: "70px",
+        //width: "100%",
         float: "left",
-        padding: "1px"
+        padding: "1px",
+        //padding: "0rem 2rem 0rem 0rem"    
+    }
+
+    const walletStyle = {
+        width: "100%",
+        float: "left",
+        padding: "1px",
+        padding: "0rem 0rem 0rem 2rem"    
+    }
+
+    const dappBody = {
+        padding: "0rem 0rem 0rem 2rem"        
     }
 
     function onChangeSlider(props) {
@@ -59,27 +72,27 @@ export default function VoterInit() {
 
     function Question (props)
     {
-        const thisQuestion = "Should xMooney bring in former Safemoon CTO Thomas 'Papa' Smith?";
+        const thisQuestion = 'Should xMooney join forces with former Safemoon CTO Thomas "Papa" Smith?';
         return thisQuestion;
     }
 
     return (
         <>
             <walletBridge1.ShowWalletConnect isConnected={currentUseState.isConnected} />
-            <div id="userWalletAddress">
-                <p>
-                    Wallet address: {currentUseState.xmPower.connectedWalletAddress}
+            <div id="userWalletAddress" style={walletStyle}>
+                <p >
+                    Wallet address: <strong>{currentUseState.xmPower.connectedWalletAddress}</strong>
                     <br />
-                    xm Power : {currentUseState.xmPower.theBalance}
+                    xm Power : <strong>{currentUseState.xmPower.theBalance}</strong>
                 </p>
             </div>
-            <div>
+            <div style={dappBody}>
                 <h2><Question></Question></h2>
                 <h2>Duties</h2>
                 <ul>
-                    <li>Brand Ambassador</li>
-                    <li>Non Development Capacity</li>
+                    <li>Brand Ambassador</li>                    
                     <li>Strategic Advisor</li>
+                    <li>Non Development Capacity</li>
                 </ul>
             </div>
 
@@ -108,8 +121,11 @@ export default function VoterInit() {
                                 amount: currentUseState.xmPower.theBalance
                             })
                         })}>Present not Voting</Button></div>}
-            </div>
-            {/* <walletBridge1.ShowSignature isConnected={currentUseState.isConnected} /> */}
+            </div>          
+            {currentUseState.isConnected &&
+            <div>
+             <p>You may only vote once. You will be prompted to verify by your wallet provider.</p>
+            </div> }
         </>
     )
 }

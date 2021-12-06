@@ -6,19 +6,21 @@ import Header from '../components/header';
 import VoterInit from '../components/voting/votingInit';
 
 
-export default function Home() {  
+export default function Home() {
 
-  return (    
+  return (
     <div className={styles.container}>
       <Head>
         <title>xMooney DApp</title>
         <meta name="description" content="xMooney DApp for xMooney Ecosystem" />
         <link rel="icon" href="/xMooney.ico" />
-      </Head> 
-      
+      </Head>
+
       <Header />
       <main className={styles.main}>
+        <div className={styles.dappBody}>
           <VoterInit />
+        </div>
       </main>
       <Footer />
     </div>
