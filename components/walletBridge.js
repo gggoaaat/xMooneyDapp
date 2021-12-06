@@ -24,7 +24,7 @@ export default function WalletBridge(e) {
     const providerOptions = e.bridgeParams.providerOptions;
 
     const [isConnected, setConnected] = useState(false);
-    const [tokenBalance, setTokenBalance] = useState({ theBalance: 'N/A', connectedWalletAddress: 'N/A' });
+    const [tokenBalance, setTokenBalance] = useState({ theBalance: 'N/A', connectedWalletAddress: 'N/A', filteredAddress : 'N/A' });
     //const initValue = { setxmPower, setConnected };
 
 
@@ -179,7 +179,9 @@ export default function WalletBridge(e) {
             ethersContract = new ethers.Contract(tokenAddress, etherABI, signer)
             balance = await getBalance(ethersContract, accounts[0]);
             balance = Math.round(balance * 100) / 100; //Round up to 2 Decimals
-            setTokenBalance({ theBalance: numberWithCommas(balance), connectedWalletAddress: connectedWalletAddress });
+
+            const filtered = connectedWalletAddress.substr(0,6) + "..." + connectedWalletAddress.substr(connectedWalletAddress.length - 6);
+            setTokenBalance({ theBalance: numberWithCommas(balance), connectedWalletAddress: connectedWalletAddress, filteredAddress : filtered });
         }
     }
 

@@ -61,7 +61,7 @@ export default function VoterInit() {
     }
 
     const dappBody = {
-        padding: "0rem 0rem 0rem 1rem"        
+        padding: "0rem 1rem 0rem 1rem"        
     }
 
     function onChangeSlider(props) {
@@ -79,8 +79,8 @@ export default function VoterInit() {
         <>
             <walletBridge1.ShowWalletConnect isConnected={currentUseState.isConnected} />
             <div id="userWalletAddress" style={dappBody}>
-                <p >
-                    Wallet address: <strong>{currentUseState.xmPower.connectedWalletAddress}</strong>
+                <p>
+                    Wallet address: <strong>{currentUseState.xmPower.filteredAddress}</strong>
                     <br />
                     xm Power : <strong>{currentUseState.xmPower.theBalance}</strong>
                 </p>
@@ -122,7 +122,7 @@ export default function VoterInit() {
                         })}>Present not Voting</Button></div>}
             </div>          
             {currentUseState.isConnected &&
-            <div>
+            <div style={dappBody}>
              <p>You may only vote once. You will be prompted to verify by your wallet provider.</p>
             </div> }
         </>
