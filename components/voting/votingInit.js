@@ -57,8 +57,7 @@ export default function VoterInit() {
     const walletStyle = {
         width: "100%",
         float: "left",
-        padding: "1px",
-        padding: "0rem 0rem 0rem 2rem"    
+        padding: "0rem 2rem 0rem 2rem"    
     }
 
     const dappBody = {
