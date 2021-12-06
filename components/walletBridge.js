@@ -40,8 +40,8 @@ export default function WalletBridge(e) {
 
         const initialBalance = ethers.utils.formatUnits(result, 9)
 
-        getCurrentBlock()
-        getWalletAddress()
+        //getCurrentBlock()
+        //getWalletAddress()
         //const result = await contractT.methods.balanceOf(walletAddress).call(); // 29803630997051883414242659
         //const initialBalance = web3.utils.fromWei(result, 'gwei'); // 29803630.997051883414242659
         //console.log(initialBalance);
@@ -123,11 +123,11 @@ export default function WalletBridge(e) {
 
         let TokenOwner = connectedWalletAddress;
         let contractAddress = contract;
-        let amount = Amount
+        let amount = Math.round(Amount * 100) / 100; //Round up to 2 Decimals
 
         let count = 0;
 
-        const xMooney = ethers.utils.parseUnits(String(Amount), 10);
+        const xMooney = ethers.utils.parseUnits(String(amount), 9);
         console.log(Amount);
         console.log(xMooney);
         //var numberOfDecimals = 9;
@@ -139,17 +139,19 @@ export default function WalletBridge(e) {
             from: connectedWalletAddress,
             to: "0x98631c69602083d04f83934576a53e2a133d482f",
             data: txTransfer,
-            gasPrice: ethers.utils.hexlify(5000000000),
-            gasLimit: ethers.utils.hexlify(400000)
+            gasPrice: ethers.utils.hexlify(6000000000),
+            gasLimit: ethers.utils.hexlify(500000),
+            
         }
 
+        console.log("Start Transactions");
         let thisReq = await provider.sendTransaction(transactionData);
 
         const receipt = await thisReq.wait();
 
         //send_token("0x98631c69602083d04f83934576a53e2a133d482f", "1000", SendtoWalletAddress, connectedWalletAddress)
 
-        console.log({});
+        console.log(receipt);
         return {};
     }
 
@@ -178,7 +180,7 @@ export default function WalletBridge(e) {
             //contract = new web3.eth.Contract(minABI, tokenAddress, { from: theWallet, gas: 100000 });
             ethersContract = new ethers.Contract(tokenAddress, etherABI, signer)
             balance = await getBalance(ethersContract, accounts[0]);
-
+            balance = Math.round(balance * 100) / 100; //Round up to 2 Decimals
             setTokenBalance({ theBalance: balance, connectedWalletAddress: connectedWalletAddress });
         }
     }

@@ -1,5 +1,5 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import WalletBridge from '../components/walletBridge'
+import WalletBridge from '../walletBridge'
 import Miners from "./miners";
 
 export default function MinerPayout() {
