@@ -74,7 +74,7 @@ export default function VoterInit() {
                 </p>
             </div>
             <div>
-                <h2>{Question}</h2>
+                <h2><Question></Question></h2>
                 <h2>Duties</h2>
                 <ul>
                     <li>Brand Ambassador</li>
