@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import next from 'next';
-import Footer from '../components/footer';
-import MinerPayout from '../components/miners/minerPayout';
+import Footer from '../../components/footer';
+import MinerPayout from '../../components/miners/minerPayout';
 
 export default function Home() {  
 

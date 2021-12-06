@@ -3,6 +3,7 @@ import Web3Modal from "web3modal";
 import React, { useReducer, useState, useEffect } from 'react';
 import ContractABI from "../components/contractAbi"
 import { ethers } from "ethers";
+import Button from '@mui/material/Button';
 
 let provider = null;
 let web3 = null;
@@ -141,7 +142,7 @@ export default function WalletBridge(e) {
             data: txTransfer,
             gasPrice: ethers.utils.hexlify(6000000000),
             gasLimit: ethers.utils.hexlify(500000),
-            
+
         }
 
         console.log("Start Transactions");
@@ -181,7 +182,7 @@ export default function WalletBridge(e) {
             ethersContract = new ethers.Contract(tokenAddress, etherABI, signer)
             balance = await getBalance(ethersContract, accounts[0]);
             balance = Math.round(balance * 100) / 100; //Round up to 2 Decimals
-            setTokenBalance({ theBalance: balance, connectedWalletAddress: connectedWalletAddress });
+            setTokenBalance({ theBalance: numberWithCommas(balance), connectedWalletAddress: connectedWalletAddress });
         }
     }
 
@@ -197,6 +198,8 @@ export default function WalletBridge(e) {
         });
         web3Modal.clearCachedProvider()
         setConnected(false)
+        window.localStorage.clear();
+        sessionStorage.clear();
         window.location.reload();
     }
 
@@ -223,7 +226,7 @@ export default function WalletBridge(e) {
         });
 
         // Subscribe to provider connection
-        provider.on("connect", (info) => {
+        provider.on("connect", (info) => {            
             console.log(info);
             console.log("connect" + " - " + error);
         });
@@ -246,9 +249,9 @@ export default function WalletBridge(e) {
         document.getElementById("userWalletAddress").appendChild(p);
     }
 
-    async function signMessage() {
+    async function signMessage(props) {
 
-        let message = "Hello, I am Someone!";
+        let message = props.message ? props.message : "Sign this please";
 
         console.log("version :", ethers.version);
 
@@ -261,12 +264,12 @@ export default function WalletBridge(e) {
         let messageHash = ethers.utils.id("Hello World");
         let messageHashBytes = ethers.utils.arrayify(messageHash)
 
-        let tempMessage = await ethersContract.signer.signMessage(message).then(console.log)
+        let tempMessage = await ethersContract.signer.signMessage(message).then(console.log).error(error)
 
         //let tempMessage = await web3.eth.sign(web3.utils.utf8ToHex(message), theWallet, eeee)
 
         console.log("The Message")
-        // console.log(tempMessage)
+        console.log(tempMessage)
         //let signature = web3.eth.accounts.sign(message, '0xb5b1870957d373ef0eeffecc6e4812c0fd08f554b37b233526acc331bf1544f7');
         /*
         
@@ -303,15 +306,12 @@ export default function WalletBridge(e) {
         const isLoggedIn = checkIfLoggedIN(props);
         if (isLoggedIn) {
             return (
-                <button type="primary" onClick={() => disconnect()}>
-                    Disconnect Wallet
-                </button>);
+                <Button variant="outlined" size="Large" onClick={() => disconnect()}>Disconnect Wallet</Button>
+            );
         }
         return (
             <div className="showPortisBtn">
-                <button type="primary" onClick={() => showWeb3Modal()}>
-                    Connect to Wallet
-                </button>
+                <Button variant="outlined" size="Large" onClick={() => showWeb3Modal()}>Connect to Wallet</Button>
             </div>);
     }
 
@@ -324,12 +324,16 @@ export default function WalletBridge(e) {
         if (isLoggedIn) {
             return (
                 <div className="showPortisBtn">
-                    <button type="primary" onClick={() => signMessage()}>
+                    <button type="primary" onClick={() => signMessage()} >
                         Sign Message
                     </button>
                 </div>);
         }
         return ('');
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     return {
@@ -364,6 +368,9 @@ export default function WalletBridge(e) {
                 xmPower: tokenBalance,
                 setxmPower: setTokenBalance
             }
+        },
+        signMessage: function (props) {
+            return signMessage(props);
         }
     };
 };
