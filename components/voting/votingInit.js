@@ -57,11 +57,11 @@ export default function VoterInit() {
     const walletStyle = {
         width: "100%",
         float: "left",
-        padding: "0rem 2rem 0rem 2rem"    
+        //padding: "0rem 2rem 0rem 2rem"    
     }
 
     const dappBody = {
-        padding: "0rem 0rem 0rem 2rem"        
+        padding: "0rem 0rem 0rem 1rem"        
     }
 
     function onChangeSlider(props) {
@@ -78,7 +78,7 @@ export default function VoterInit() {
     return (
         <>
             <walletBridge1.ShowWalletConnect isConnected={currentUseState.isConnected} />
-            <div id="userWalletAddress" style={walletStyle}>
+            <div id="userWalletAddress" style={dappBody}>
                 <p >
                     Wallet address: <strong>{currentUseState.xmPower.connectedWalletAddress}</strong>
                     <br />
