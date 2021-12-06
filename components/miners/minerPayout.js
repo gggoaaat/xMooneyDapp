@@ -5,7 +5,7 @@ import Miners from "./miners";
 export default function MinerPayout() {
     
     const bridgeParams = {
-        tokenAddress: "0x98631c69602083d04f83934576a53e2a133d482f",
+        tokenAddress: process.env.contractAddress,
         providerOptions: {
             metamask: {
                 id: 'injected',
@@ -21,8 +21,8 @@ export default function MinerPayout() {
                     },
                     network: 'binance',
                     chainId: 56,
-                    infuraId: "b830c8484bf841d795848610ff791d5b", // required
-                    address: "0x98631c69602083d04f83934576a53e2a133d482f",
+                    infuraId: process.env.infuraID, // required
+                    address: process.env.contractAddress,
                     qrcodeModalOptions: {
                         mobileLinks: [
                             'rainbow',
@@ -42,8 +42,8 @@ export default function MinerPayout() {
     let walletBridge1 = WalletBridge(dappParams);
 
     let currentUseState = walletBridge1.getUseStates();
-    let getMiners = Miners(walletBridge1);
-    let displayData = true ? getMiners.getMinerPayout() : "Loading!" //(<ul>{resultData}</ul>)
+    let GetMiners = Miners(walletBridge1);
+    let displayData = true ? GetMiners.GetMinerPayout() : "Loading!" //(<ul>{resultData}</ul>)
 
     return (
         <>

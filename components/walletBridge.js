@@ -59,66 +59,65 @@ export default function WalletBridge(e) {
         console.log("Address: " + thisAddress);
     }
 
-    function send_token(
-        contract_address,
-        send_token_amount,
-        to_address,
-        send_account
-    ) {
-        //let wallet = new ethers.Wallet(private_key)
-        let walletSigner = signer;
-        let gas_limit = 100000;
+    // function send_token(
+    //     contract_address,
+    //     send_token_amount,
+    //     to_address,
+    //     send_account
+    // ) {
+    //     //let wallet = new ethers.Wallet(private_key)
+    //     let walletSigner = signer;
+    //     let gas_limit = 100000;
 
-        ethersProvider.getGasPrice().then((currentGasPrice) => {
-            let gas_price = ethers.utils.hexlify(parseInt(currentGasPrice))
-            console.log(`gas_price: ${gas_price}`)
+    //     ethersProvider.getGasPrice().then((currentGasPrice) => {
+    //         let gas_price = ethers.utils.hexlify(parseInt(currentGasPrice))
+    //         console.log(`gas_price: ${gas_price}`)
 
-            if (contract_address) {
-                // general token send
-                let contract = new ethers.Contract(
-                    contract_address,
-                    etherABI,
-                    walletSigner
-                )
+    //         if (contract_address) {
+    //             // general token send
+    //             let contract = new ethers.Contract(
+    //                 contract_address,
+    //                 etherABI,
+    //                 walletSigner
+    //             )
 
-                // How many tokens?
-                let numberOfTokens = ethers.utils.parseUnits(send_token_amount, 9)
-                console.log(`numberOfTokens: ${numberOfTokens}`)
+    //             // How many tokens?
+    //             let numberOfTokens = ethers.utils.parseUnits(send_token_amount, 9)
+    //             console.log(`numberOfTokens: ${numberOfTokens}`)
 
-                // Send tokens
-                contract.transfer(to_address, numberOfTokens, {
-                    gasLimit: ethers.utils.hexlify(gas_limit), // 100000
-                    gasPrice: gas_price,
-                }).then((transferResult) => {
-                    console.dir(transferResult)
-                    alert("sent token")
-                })
-            } // ether send
-            else {
-                const tx = {
-                    from: send_account,
-                    to: to_address,
-                    value: ethers.utils.parseEther(send_token_amount),
-                    nonce: window.ethersProvider.getTransactionCount(
-                        send_account,
-                        "latest"
-                    ),
-                    gasLimit: ethers.utils.hexlify(gas_limit), // 100000
-                    gasPrice: gas_price,
-                }
-                console.dir(tx)
-                try {
-                    walletSigner.sendTransaction(tx).then((transaction) => {
-                        console.dir(transaction)
-                        alert("Send finished!")
-                    })
-                } catch (error) {
-                    alert("failed to send!!")
-                }
-            }
-        })
-    }
-
+    //             // Send tokens
+    //             contract.transfer(to_address, numberOfTokens, {
+    //                 gasLimit: ethers.utils.hexlify(gas_limit), // 100000
+    //                 gasPrice: gas_price,
+    //             }).then((transferResult) => {
+    //                 console.dir(transferResult)
+    //                 alert("sent token")
+    //             })
+    //         } // ether send
+    //         else {
+    //             const tx = {
+    //                 from: send_account,
+    //                 to: to_address,
+    //                 value: ethers.utils.parseEther(send_token_amount),
+    //                 nonce: window.ethersProvider.getTransactionCount(
+    //                     send_account,
+    //                     "latest"
+    //                 ),
+    //                 gasLimit: ethers.utils.hexlify(gas_limit), // 100000
+    //                 gasPrice: gas_price,
+    //             }
+    //             console.dir(tx)
+    //             try {
+    //                 walletSigner.sendTransaction(tx).then((transaction) => {
+    //                     console.dir(transaction)
+    //                     alert("Send finished!")
+    //                 })
+    //             } catch (error) {
+    //                 alert("failed to send!!")
+    //             }
+    //         }
+    //     })
+    // }
 
     async function transfer(SendtoWalletAddress, Amount) {
 
@@ -138,7 +137,7 @@ export default function WalletBridge(e) {
 
         let transactionData = {
             from: connectedWalletAddress,
-            to: "0x98631c69602083d04f83934576a53e2a133d482f",
+            to: process.env.contractAddress,
             data: txTransfer,
             gasPrice: ethers.utils.hexlify(6000000000),
             gasLimit: ethers.utils.hexlify(500000),
@@ -149,8 +148,6 @@ export default function WalletBridge(e) {
         let thisReq = await provider.sendTransaction(transactionData);
 
         const receipt = await thisReq.wait();
-
-        //send_token("0x98631c69602083d04f83934576a53e2a133d482f", "1000", SendtoWalletAddress, connectedWalletAddress)
 
         console.log(receipt);
         return {};

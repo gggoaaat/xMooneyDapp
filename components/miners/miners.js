@@ -21,7 +21,7 @@ export default function Miners(e) {
         //e.transfer()
     }
 
-    function getMinerPayout(props) {
+    function GetMinerPayout(props) {
         
         const [payoutData, setPayoutData] = useState({ rows: [] });
         const [loaded, setLoaded] = useState(false);
@@ -71,8 +71,8 @@ export default function Miners(e) {
     }
 
     return {
-        getMinerPayout: function (props) {
-            return getMinerPayout(props);
+        GetMinerPayout: function (props) {
+            return GetMinerPayout(props);
         }
     }
 }
