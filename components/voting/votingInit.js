@@ -136,6 +136,13 @@ export default function VoterInit() {
                 </p>
             </div>
 
+            {(currentUseState.isConnected && currentUseState.xmPower.filteredAddress == "N/A") &&
+                <div>
+                    Please connect to the BSC Network
+                </div>
+            }
+
+
             {(currentUseState.isConnected && currentUseState.isWaiting == false) &&
                 <div style={dappBody}>
                     <h2><Question></Question></h2>
@@ -152,15 +159,15 @@ export default function VoterInit() {
             }
 
             <div>
-                {(currentUseState.isConnected && currentUseState.isWaiting == false) &&
+                {(currentUseState.isConnected && currentUseState.isWaiting == false && currentUseState.xmPower.filteredAddress != "N/A") &&
                     <div style={SliderStyle}>
                         <Button variant="outlined" size="Large" onClick={() => SendVote({ vote: "Yes" })}>Yes</Button>
                     </div>}
-                {(currentUseState.isConnected && currentUseState.isWaiting == false) &&
+                {(currentUseState.isConnected && currentUseState.isWaiting == false && currentUseState.xmPower.filteredAddress != "N/A") &&
                     <div style={SliderStyle}>
                         <Button variant="outlined" size="Large" onClick={() => SendVote({ vote: "No" })}>No</Button>
                     </div>}
-                {(currentUseState.isConnected && currentUseState.isWaiting == false) &&
+                {(currentUseState.isConnected && currentUseState.isWaiting == false && currentUseState.xmPower.filteredAddress != "N/A") &&
                     <div style={SliderStyle}>
                         <Button variant="outlined" size="Large" onClick={() => SendVote({ vote: "Present" })}>Present not Voting</Button>
                     </div>}
