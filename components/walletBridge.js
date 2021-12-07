@@ -24,7 +24,8 @@ export default function WalletBridge(e) {
     const providerOptions = e.bridgeParams.providerOptions;
 
     const [isConnected, setConnected] = useState(false);
-    const [tokenBalance, setTokenBalance] = useState({ theBalance: 'N/A', connectedWalletAddress: 'N/A', filteredAddress : 'N/A' });
+    const [tokenBalance, setTokenBalance] = useState({ trueBalance: 'N/A', theBalance: 'N/A', connectedWalletAddress: 'N/A', filteredAddress: 'N/A' });
+    const [isWaiting, setIsWaiting] = useState(false);
     //const initValue = { setxmPower, setConnected };
 
 
@@ -128,8 +129,10 @@ export default function WalletBridge(e) {
         let count = 0;
 
         const xMooney = ethers.utils.parseUnits(String(amount), 9);
-        console.log(Amount);
-        console.log(xMooney);
+        if (process.env.debug) {
+            console.log(Amount);
+            console.log(xMooney);
+        }
         //var numberOfDecimals = 9;
         //var numberOfTokens = ethers.utils.parseUnits(String(xMooney), numberOfDecimals);
 
@@ -143,13 +146,15 @@ export default function WalletBridge(e) {
             gasLimit: ethers.utils.hexlify(500000),
 
         }
-
-        console.log("Start Transactions");
+        if (process.env.debug) {
+            console.log("Start Transactions");
+        }
         let thisReq = await provider.sendTransaction(transactionData);
 
         const receipt = await thisReq.wait();
-
-        console.log(receipt);
+        if (process.env.debug) {
+            console.log(receipt);
+        }
         return {};
     }
 
@@ -180,8 +185,8 @@ export default function WalletBridge(e) {
             balance = await getBalance(ethersContract, accounts[0]);
             balance = Math.round(balance * 100) / 100; //Round up to 2 Decimals
 
-            const filtered = connectedWalletAddress.substr(0,6) + "..." + connectedWalletAddress.substr(connectedWalletAddress.length - 6);
-            setTokenBalance({ theBalance: numberWithCommas(balance), connectedWalletAddress: connectedWalletAddress, filteredAddress : filtered });
+            const filtered = connectedWalletAddress.substr(0, 6) + "..." + connectedWalletAddress.substr(connectedWalletAddress.length - 6);
+            setTokenBalance({ trueBalance: balance, theBalance: numberWithCommas(balance), connectedWalletAddress: connectedWalletAddress, filteredAddress: filtered });
         }
     }
 
@@ -208,30 +213,39 @@ export default function WalletBridge(e) {
 
         ethersProvider = new ethers.providers.Web3Provider(provider);
         signer = ethersProvider.getSigner();
-        console.log(ethersProvider);
-        console.log(signer);
+        if (process.env.debug) {
+            console.log(ethersProvider);
+            console.log(signer);
+        }
 
         //web3 = new Web3(provider)
 
         // Subscribe to accounts change
         provider.on("accountsChanged", (accounts) => {
-            console.log(accounts);
+            if (process.env.debug) {
+                console.log(accounts);
+            }
         });
 
         // Subscribe to chainId change
         provider.on("chainChanged", (chainId) => {
-            console.log(chainId);
-            console.log("connect" + " - " + error);
+            if (process.env.debug) {
+                console.log(chainId);
+                console.log("connect" + " - " + error);
+            }
         });
 
         // Subscribe to provider connection
-        provider.on("connect", (info) => {            
-            console.log(info);
-            console.log("connect" + " - " + error);
+        provider.on("connect", (info) => {
+            if (process.env.debug) {
+                console.log(info);
+                console.log("connect" + " - " + error);
+            }
         });
 
         // Subscribe to provider disconnection
         provider.on("disconnect", (error) => {
+
             console.log("disconnect" + " - " + error);
             provider = null;
             setConnected(false);
@@ -248,27 +262,39 @@ export default function WalletBridge(e) {
         document.getElementById("userWalletAddress").appendChild(p);
     }
 
-    async function signMessage(props) {
+    async function signMessage(props, thisFunc) {
 
+        setIsWaiting(true)
         let message = props.message ? props.message : "Sign this please";
 
         console.log("version :", ethers.version);
 
-        function eeee(error, result) {
-            console.log("Something happened")
-            console.log(error);
-            console.log(result);
+        function signMessageCatch(error, result) {
+            if (process.env.debug) {
+                console.log("Catch User Response")
+                console.log(error);
+                console.log(result);
+            }
         }
 
         let messageHash = ethers.utils.id("Hello World");
         let messageHashBytes = ethers.utils.arrayify(messageHash)
 
-        let tempMessage = await ethersContract.signer.signMessage(message).then(console.log).error(error)
+        function signMessageSuccess(e) {
+            if (thisFunc) {
+                thisFunc(e)
+            }
+        }
+
+        let tempMessage = await ethersContract.signer.signMessage(message).then(signMessageSuccess).catch(signMessageCatch)
 
         //let tempMessage = await web3.eth.sign(web3.utils.utf8ToHex(message), theWallet, eeee)
+        if (process.env.debug) {
+            console.log("The Message")
+        }
 
-        console.log("The Message")
-        console.log(tempMessage)
+        setIsWaiting(false)
+        return tempMessage;
         //let signature = web3.eth.accounts.sign(message, '0xb5b1870957d373ef0eeffecc6e4812c0fd08f554b37b233526acc331bf1544f7');
         /*
         
@@ -363,13 +389,13 @@ export default function WalletBridge(e) {
         },
         getUseStates: function () {
             return {
-                isConnected, setConnected,
+                isConnected, setConnected, isWaiting, setIsWaiting,
                 xmPower: tokenBalance,
                 setxmPower: setTokenBalance
             }
         },
-        signMessage: function (props) {
-            return signMessage(props);
+        signMessage: function (props, thisFunc) {
+            return signMessage(props, thisFunc);
         }
     };
 };
