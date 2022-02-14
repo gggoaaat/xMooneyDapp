@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import next from 'next';
-import Footer from '../components/footer';
-import Header from '../components/header';
-import MintInit from '../components/mint/mintInit';
+import Footer from '../../components/footer';
+import Header from '../../components/header';
+import VoterInit from '../../components/voting/votingInit';
 
 
 export default function Home() {
@@ -11,15 +11,15 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>xMooney Dapp</title>
-        <meta name="description" content="NFT Country Club" />
+        <title>xMooney DApp</title>
+        <meta name="description" content="xMooney DApp for xMooney Ecosystem" />
         <link rel="icon" href="/xMooney.ico" />
       </Head>
 
       <Header />
       <main className={styles.main}>
         <div className={styles.dappBody}>
-          <MintInit />
+          <VoterInit />
         </div>
       </main>
       <Footer />

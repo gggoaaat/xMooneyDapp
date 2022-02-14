@@ -174,8 +174,14 @@ export default function VoterInit() {
             </div>
             {currentUseState.isConnected &&
                 <div style={dappBody}>
+                    <p>Signature Hash: currentUseState.isConnected</p>
+                </div>}
+
+            {currentUseState.isConnected &&
+                <div style={dappBody}>
                     <p>You may only vote once. You will be prompted to verify by your wallet provider.</p>
                 </div>}
+
         </>
     )
 }

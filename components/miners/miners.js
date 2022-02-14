@@ -34,7 +34,7 @@ export default function Miners(e) {
 
         useEffect(async () => {
             if (true) {
-                const url = doCORSRequest('https://us-east4-just-shape-317505.cloudfunctions.net/function-getPayOuts?RunIt=1&Query=miner%20payouts&PayOutID=613');
+                const url = doCORSRequest('https://us-east4-just-shape-317505.cloudfunctions.net/function-get?RunIt=1&Query=pending miner rewards&PayOutID=828');
                 const options = {
                     method: 'GET',
                     //mode: 'no-cors',
@@ -73,6 +73,7 @@ export default function Miners(e) {
                 <input key="Amount"></input>
                 <button onClick={() => sendMinerPayout({})}>Send</button>
             </form>
+                <h1># of Miners { payoutData.rows.length }</h1>
                 <table><thead><tr><th>Martian</th><th>Wallet</th><th>Payout</th><th></th></tr></thead><tbody>{loaded ? resultData : <tr><td colSpan="3">Loading</td></tr>}</tbody></table>
             </>)
     }

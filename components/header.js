@@ -10,7 +10,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <Image src="https://static.wixstatic.com/media/0d6414_04bb2c3af25b4e51835d91bc89a8c8f6~mv2.png/v1/fill/w_200,h_200,al_c,q_85/xMooney_Logo_Token_200px_x_200px.webp" title="xMooney Logo" alt="xMooney Logo" width={100} height={100} />
+                { <Image src="https://static.wixstatic.com/media/0d6414_04bb2c3af25b4e51835d91bc89a8c8f6~mv2.png/v1/fill/w_200,h_200,al_c,q_85/xMooney_Logo_Token_200px_x_200px.webp" title="xMooney Logo" alt="xMooney Logo" width={100} height={100} />}
                 {' '}
                 <span className={styles.logo}>
                     {/* 

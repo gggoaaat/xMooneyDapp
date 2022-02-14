@@ -4,7 +4,8 @@ module.exports = {
   env : {
     contractAddress : "0x98631c69602083d04f83934576a53e2a133d482f",
     infuraID : "b830c8484bf841d795848610ff791d5b",
-    debug : false
+    defaultGas: 210000,
+    debug : true
   },
   images: {
     domains: ['static.wixstatic.com'],
