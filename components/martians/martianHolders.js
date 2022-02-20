@@ -30,26 +30,26 @@ export default function MartianHolders(e) {
     function GetMinerPayout(props) {
 
         const [payoutData, setPayoutData] = useState({ rows: [
-            { "Martian": "1",  "WalletAddress": "0x4fEaB81cB13ED6DeBC30e5F4535038869AE95Bd5", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "2",  "WalletAddress": "0x949d83f3275BcC672A46e037F398A2b2b2deFA6b", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "3",  "WalletAddress": "0x5A8232a5D84871860fF9134f213EEb584C85137e", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "4",  "WalletAddress": "0x458B9F4e5fcA254690575c99b3B2391D22992C25", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "5",  "WalletAddress": "0xeD3dC7caf47278dCe1c7e4a7E75DB778a717bA02", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "6",  "WalletAddress": "0xB8304ED45c8BE8F2684D26883CBf67156AE363ad", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "7",  "WalletAddress": "0x5750526d21809B0Fb39d48899DB3A3a17b3ec4a7", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "8",  "WalletAddress": "0xa9A6030ffE4DcC98198aDfdbeFc2e95631B82634", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "9",  "WalletAddress": "0x8AeB3b3b3B3511f189d63702632c2526eEA42e57", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "10", "WalletAddress": "0x00563204729d8412dd9050ee48e3eaA24Dfc9Dd4", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "11", "WalletAddress": "0xCbb47AE9C8865791702D44bd3Aca14751e77C95f", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "12", "WalletAddress": "0xe4daB2f9d226F1D5CE8B3ec83AB9Cf3b77E2780F", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "13", "WalletAddress": "0xB1422a9945256CFa1dfAf9E8f05966ee4ce78A90", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "14", "WalletAddress": "0x8a1E1b43d8b01bA28ca893Ec0beD6f845E27AB8d" , "Mooney Earned w Reflections" : 20000},
-            { "Martian": "15", "WalletAddress": "0xe986e5018009F010695Ce6513c925e0F45B10E12", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "16", "WalletAddress": "0xb8A51d5745C34812D51B26d049AE45ACe0193246", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "17", "WalletAddress": "0xc2Ef44a5aBF728Bbcc6DCe3A29b2EF37d6e06d93", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "18", "WalletAddress": "0xf117Dc3C7448619E6fb7bfc8F5926c578cF400de", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "19", "WalletAddress": "0xd62bB98466761003253C8097943A3589e5d427Ee", "Mooney Earned w Reflections" : 20000},
-            { "Martian": "20", "WalletAddress": "0xC7DC1454a66ADAE31824317447706174c136c0f7" , "Mooney Earned w Reflections" : 20000}
+            { "Martian": "1",  "WalletAddress": "0xE74bd9dA4d88B57Ea88E16F2978469bF73DB0774", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "2",  "WalletAddress": "0xC59ed4ad4bC0E69008db5B6ECE95e2398023bDF5", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "3",  "WalletAddress": "0xC7DC1454a66ADAE31824317447706174c136c0f7", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "4",  "WalletAddress": "0xD1CC76b7892e9F6b5B318B552A4Ac98812D6cEe9", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "5",  "WalletAddress": "0xb86b654D1BF7d68795cA5cF33d9B9dB065a4F2Cf", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "6",  "WalletAddress": "0x1baf91Fa6d655A3Ec8A8Cf2bC3958f052dae0F5E", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "7",  "WalletAddress": "0xB8304ED45c8BE8F2684D26883CBf67156AE363ad", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "8",  "WalletAddress": "0xdB969142fE603e0b02fB44a43504962536b909D3", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "9",  "WalletAddress": "0x37e57E5F8279f367Fb8FF48FAF5a5A87fBc37fe4", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "10", "WalletAddress": "0xe3F2d985474F59Aa2cEeFd9a4eB574b8797dE0C3", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "11", "WalletAddress": "0x37C9252892d65510caD1a94E250d75de3a7992D3", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "12", "WalletAddress": "0xA2216B7c998571Daf84bAb685B31FcE0F16753E7", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "13", "WalletAddress": "0x5750526d21809B0Fb39d48899DB3A3a17b3ec4a7", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "14", "WalletAddress": "0xd5745322Be72654761775586ed14C34713d805E5", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "15", "WalletAddress": "0x1a23609c868721bC6FdA3DdD71AaeC1aD377165c", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "16", "WalletAddress": "0x293a07a31af512E3284d8BD2d95C8e421911169E", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "17", "WalletAddress": "0xc85296B580c647C92eccAA89593bA8272eBff6d3", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "18", "WalletAddress": "0xB7C23C678E14339851bFFe9D01CeAF36BE67d972", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "19", "WalletAddress": "0xeD3dC7caf47278dCe1c7e4a7E75DB778a717bA02", "Mooney Earned w Reflections" : 35000 },
+            { "Martian": "20", "WalletAddress": "0x335D96bc142E52e66A1Ae24A4dd909045064EB95", "Mooney Earned w Reflections" : 35000 }
         ] });
         const [loaded, setLoaded] = useState(true);
         
