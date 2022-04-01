@@ -1,8 +1,8 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import WalletBridge from '../walletBridge'
-import Miners from "./martianHolders";
+import giveaways from "./giveaways";
 
-export default function MartianHolderPayout() {
+export default function Index() {
     
     const bridgeParams = {
         tokenAddress: process.env.contractAddress,
@@ -42,7 +42,7 @@ export default function MartianHolderPayout() {
     let walletBridge1 = WalletBridge(dappParams);
 
     let currentUseState = walletBridge1.getUseStates();
-    let GetMiners = Miners(walletBridge1);
+    let GetMiners = giveaways(walletBridge1);
     let displayData = true ? GetMiners.GetMinerPayout() : "Loading!" //(<ul>{resultData}</ul>)
 
     return (

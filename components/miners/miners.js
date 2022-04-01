@@ -34,7 +34,7 @@ export default function Miners(e) {
 
         useEffect(async () => {
             if (true) {
-                const url = doCORSRequest('https://us-east4-just-shape-317505.cloudfunctions.net/function-get?RunIt=1&Query=pending miner rewards&PayOutID=828');
+                const url = doCORSRequest('https://us-east4-just-shape-317505.cloudfunctions.net/function-get?RunIt=1&Query=pending miner rewards&PayOutID=921');
                 const options = {
                     method: 'GET',
                     //mode: 'no-cors',

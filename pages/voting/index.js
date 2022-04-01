@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import next from 'next';
 import Footer from '../../components/footer';
 import Header from '../../components/header';

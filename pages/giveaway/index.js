@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 import next from 'next';
 import Footer from '../../components/footer';
-import MinerPayout from '../../components/martians/martianHolderPayout';
+import MinerPayout from '../../components/bulk/index';
 
 export default function Home() {  
 
