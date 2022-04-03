@@ -40,7 +40,7 @@ export default function Miners(e) {
                     //mode: 'no-cors',
                     headers: {
                         'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Credentials': 'true',
+                       // 'Access-Control-Allow-Credentials': 'true',
                 // ?        'x-requested-with': window.location.host
                     }
                 };
