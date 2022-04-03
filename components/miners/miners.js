@@ -38,11 +38,11 @@ export default function Miners(e) {
                 const options = {
                     method: 'GET',
                     mode: 'no-cors',
-                    // headers: {
-                    //     'Access-Control-Allow-Origin': 'https://localhost:3000',
-                    //     'Access-Control-Allow-Credentials': 'true',
-                    //     'x-requested-with': window.location.host
-                    // }
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Credentials': 'true',
+                // ?        'x-requested-with': window.location.host
+                    }
                 };
                 try {
                     await fetch(url, options).then(response => response.json()).then(setPayoutData)
