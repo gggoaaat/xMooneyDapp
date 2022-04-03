@@ -37,7 +37,7 @@ export default function Miners(e) {
                 const url = doCORSRequest('https://us-east4-just-shape-317505.cloudfunctions.net/function-get?RunIt=1&Query=pending miner rewards&PayOutID=969');
                 const options = {
                     method: 'GET',
-                   // mode: 'no-cors',
+                    mode: 'no-cors',
                     // headers: {
                     //     'Access-Control-Allow-Origin': 'https://localhost:3000',
                     //     'Access-Control-Allow-Credentials': 'true',
