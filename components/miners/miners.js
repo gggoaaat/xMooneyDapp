@@ -39,6 +39,7 @@ export default function Miners(e) {
                     method: 'GET',
                     //mode: 'no-cors',
                     headers: {
+                        'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',
                        // 'Access-Control-Allow-Credentials': 'true',
                 // ?        'x-requested-with': window.location.host
