@@ -34,15 +34,15 @@ export default function Miners(e) {
 
         useEffect(async () => {
             if (true) {
-                const url = doCORSRequest('https://us-east4-just-shape-317505.cloudfunctions.net/function-get?RunIt=1&Query=pending miner rewards&PayOutID=921');
+                const url = doCORSRequest('https://us-east4-just-shape-317505.cloudfunctions.net/function-get?RunIt=1&Query=pending miner rewards&PayOutID=969');
                 const options = {
                     method: 'GET',
-                    //mode: 'no-cors',
-                    headers: {
-                        'Access-Control-Allow-Origin': 'https://localhost:3000',
-                        'Access-Control-Allow-Credentials': 'true',
-                        'x-requested-with': window.location.host
-                    }
+                   // mode: 'no-cors',
+                    // headers: {
+                    //     'Access-Control-Allow-Origin': 'https://localhost:3000',
+                    //     'Access-Control-Allow-Credentials': 'true',
+                    //     'x-requested-with': window.location.host
+                    // }
                 };
                 try {
                     await fetch(url, options).then(response => response.json()).then(setPayoutData)

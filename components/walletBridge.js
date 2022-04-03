@@ -149,12 +149,23 @@ export default function WalletBridge(e) {
         if (process.env.debug) {
             console.log("Start Transactions");
         }
-        let thisReq = await provider.sendTransaction(transactionData);
+        try
+        {
+            let thisReq = await provider.sendTransaction(transactionData).on('transactionHash', function (hash) {
+                //hashArray = [];
+                console.log({ SendtoWalletAddress, Amount, tx: hash });
+            });
 
-        const receipt = await thisReq.wait();
-        if (process.env.debug) {
-            console.log(receipt);
+            const receipt = await thisReq.wait();
+            if (process.env.debug) {
+                console.log(receipt);
+            }
         }
+        catch
+        {
+
+        }
+        
         return {};
     }
 
